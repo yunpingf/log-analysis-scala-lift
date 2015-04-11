@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+</head>
+<body class="lift:content_id=main">
+	<div id="main" class="lift:surround?with=indextemplate;at=content">
+		<script data-lift="head" src="js/main.js"></script>
+		<div class="container">
+			<div class="row">
+				<!-- Modal for importing data-->
+				<div class="modal" id="importDataModal" tabindex="-1" role="dialog"
+					aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="importDataModalLabel">导入数据</h4>
+							</div>
+							<form data-lift="form.ajax">
+								<div id="importDataReplace">
+									<span class="lift:embed?what=/templating/_importData_modal"></span>
+								</div>
+							</form>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- Modal for importing data ends-->
+				<!-- Modal for importing homework data-->
+				<div class="modal" id="importHomeworkModal" tabindex="-1" role="dialog"
+					aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="importHomeworkModalLabel">导入作业数据</h4>
+							</div>
+							<form data-lift="form.ajax">
+								<div id="importHomeworkReplace">
+									<span class="lift:embed?what=/templating/_importHomework_modal"></span>
+								</div>
+							</form>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- Modal for importing homework data ends-->
+				<!-- Modal for top videos-->
+				<div class="modal" id="topVideosModal" tabindex="-1" role="dialog"
+					aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="topVideosModalLabel">热门视频</h4>
+							</div>
+							<form data-lift="form.ajax">
+								<div id="topVideosReplace">
+									<span class="lift:embed?what=/templating/_topVideos_modal"></span>
+								</div>
+							</form>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- Modal for top videos ends-->
+				<!-- Modal for video by student-->
+				<div class="modal" id="videoByStudentModal" tabindex="-1"
+					role="dialog" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="videoByStudentModalLabel">视频观看情况</h4>
+							</div>
+							<form data-lift="form.ajax">
+								<div id="videoByStudentsReplace">
+									<span class="lift:embed?what=/templating/_videoByStudent_modal"></span>
+								</div>
+							</form>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- Modal for video by student ends-->
+				<!-- Modal for video pause-->
+				<div class="modal" id="videoPauseModal" tabindex="-1" role="dialog"
+					aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="videoPauseModalLabel">视频暂停</h4>
+							</div>
+							<form data-lift="form.ajax">
+								<div id="videoPauseReplace">
+									<span class="lift:embed?what=/templating/_videoPause_modal"></span>
+								</div>
+							</form>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- Modal for video pause ends-->
+				<!-- Modal for video move-->
+				<div class="modal" id="videoMoveModal" tabindex="-1" role="dialog"
+					aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="videoMoveModalLabel">视频快进</h4>
+							</div>
+							<form data-lift="form.ajax">
+								<div id="videoMoveReplace">
+									<span class="lift:embed?what=/templating/_videoMove_modal"></span>
+								</div>
+							</form>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- Modal for video move ends-->
+				<!-- Modal for video info-->
+				<div class="modal" id="videoInfoModal" tabindex="-1" role="dialog"
+					aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="videoInfoModalLabel">视频播放信息</h4>
+							</div>
+							<form data-lift="form.ajax">
+								<div id="videoInfoReplace">
+									<span class="lift:embed?what=/templating/_videoInfo_modal"></span>
+								</div>
+							</form>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- Modal for video info ends-->
+			</div>
+			<div class="row" style="display:none">
+				<div class="progress">
+					<lift:comet type="ProgressBar" name="ImportData">
+						<pgb:bar></pgb:bar>
+					</lift:comet>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2 left-nav-bar">
+					<div class="nav-item">
+						<a data-toggle="collapse" data-parent="#accordion"
+							href="#collapseOne"><span class="glyphicon glyphicon-film"></span>视频数据</a>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse in">
+						<ul class="nav nav-pills" role="tablist">
+							<li class="left-nav-choice active"><a href="#topVideos"
+								data-toggle="pill">热门视频排行</a></li>
+							<li class="left-nav-choice"><a href="#videoByStudent"
+								data-toggle="pill">视频观看情况</a></li>
+							<li class="left-nav-choice"><a href="#videoPause"
+								data-toggle="pill">视频暂停统计</a></li>
+							<li class="left-nav-choice"><a href="#videoMove"
+								data-toggle="pill">视频快进统计</a></li>
+								<li class="left-nav-choice"><a href="#videoInfo"
+								data-toggle="pill">视频播放统计</a></li>
+						</ul>
+					</div>
+					<div class="nav-item nav-item-others">
+						<a data-toggle="collapse" data-parent="#accordion"
+							href="#collapseTwo"><span
+							class="glyphicon glyphicon-th-large"></span>其他</a>
+					</div>
+					<div id="collapseTwo" class="panel-collapse collapse"></div>
+				</div>
+				<div class="col-xs-10 right-nav-bar">
+					<div class="tab-content">
+						<div class="tab-pane active" id="topVideos">
+							<div class="row">
+								<div class="col-xs-1">
+									<a style="text-decoration: none" href="#"
+										onclick="toggleTopVideosModal()"><span
+										class="glyphicon glyphicon-refresh"></span>刷新</a>
+								</div>
+								<div class="col-xs-11">
+									<div class="progress">
+										<lift:comet type="ProgressBar" name="TopVideos">
+											<pgb:bar></pgb:bar>
+										</lift:comet>
+									</div>
+								</div>
+							</div>
+							<ul class="nav nav-tabs" role="tablist">
+								<li class="active"><a href="#topVideosTable" role="tab"
+									data-toggle="tab">表格</a></li>
+								<li><a href="#topVideosColumn" role="tab" data-toggle="tab">柱状图</a></li>
+							</ul>
+
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div class="tab-pane active" id="topVideosTable"></div>
+								<div class="tab-pane" id="topVideosColumn"></div>
+							</div>
+						</div>
+						<div class="tab-pane" id="videoByStudent">
+							<div class="row">
+								<div class="col-xs-1">
+									<a style="text-decoration: none" href="#"
+										onclick="toggleVideoByStudentModal()"><span
+										class="glyphicon glyphicon-refresh"></span>刷新</a>
+								</div>
+								<div class="col-xs-11">
+									<div class="progress">
+										<lift:comet type="ProgressBar" name="VideoByStudent">
+											<pgb:bar></pgb:bar>
+										</lift:comet>
+									</div>
+								</div>
+							</div>
+							<ul class="nav nav-tabs" role="tablist">
+								<li class="active"><a href="#videoByStudentTable"
+									role="tab" data-toggle="tab">表格</a></li>
+								<li><a href="#videoByStudentColumn" role="tab"
+									data-toggle="tab">柱状图</a></li>
+							</ul>
+
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div class="tab-pane active" id="videoByStudentTable"></div>
+								<div class="tab-pane" id="videoByStudentColumn"></div>
+							</div>
+						</div>
+						<div class="tab-pane" id="videoPause">
+							<div class="row">
+								<div class="col-xs-1">
+									<a style="text-decoration: none" href="#"
+										onclick="toggleVideoPauseModal()"><span
+										class="glyphicon glyphicon-refresh"></span>刷新</a>
+								</div>
+								<div class="col-xs-11">
+									<div class="progress">
+										<lift:comet type="ProgressBar" name="VideoPause">
+											<pgb:bar></pgb:bar>
+										</lift:comet>
+									</div>
+								</div>
+							</div>
+							<ul class="nav nav-tabs" role="tablist">
+								<li class="active"><a href="#videoPauseTable"
+									role="tab" data-toggle="tab">表格</a></li>
+								<li><a href="#videoPauseColumn" role="tab"
+									data-toggle="tab">柱状图</a></li>
+							</ul>
+
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div class="tab-pane" id="videoPauseTable"></div>
+								<div class="tab-pane" id="videoPauseColumn"></div>
+							</div>
+						</div>
+						<div class="tab-pane" id="videoMove">
+							<div class="row">
+								<div class="col-xs-1">
+									<a style="text-decoration: none" href="#"
+										onclick="toggleVideoMoveModal()"><span
+										class="glyphicon glyphicon-refresh"></span>刷新</a>
+								</div>
+								<div class="col-xs-11">
+									<div class="progress">
+										<lift:comet type="ProgressBar" name="VideoMove">
+											<pgb:bar></pgb:bar>
+										</lift:comet>
+									</div>
+								</div>
+							</div>
+							<ul class="nav nav-tabs" role="tablist">
+								<li><a href="#videoMoveTable"
+									role="tab" data-toggle="tab">表格</a></li>
+								<li class="active"><a href="#videoMoveColumn" role="tab"
+									data-toggle="tab">柱状图</a></li>
+							</ul>
+
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div class="tab-pane" id="videoMoveTable"></div>
+								<div class="tab-pane active" id="videoMoveColumn"></div>
+							</div>
+						</div>
+						<div class="tab-pane" id="videoInfo">
+							<div class="row">
+								<div class="col-xs-1">
+									<a style="text-decoration: none" href="#"
+										onclick="toggleVideoInfoModal()"><span
+										class="glyphicon glyphicon-refresh"></span>刷新</a>
+								</div>
+								<div class="col-xs-11">
+									<div class="progress">
+										<lift:comet type="ProgressBar" name="VideoInfo">
+											<pgb:bar></pgb:bar>
+										</lift:comet>
+									</div>
+								</div>
+							</div>
+							<ul class="nav nav-tabs" role="tablist">
+								<li><a href="#videoInfoTable"
+									role="tab" data-toggle="tab">表格</a></li>
+								<li class="active"><a href="#videoInfoColumn" role="tab"
+									data-toggle="tab">图表</a></li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div class="tab-pane" id="videoInfoTable"></div>
+								<div class="tab-pane active" id="videoInfoColumn"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

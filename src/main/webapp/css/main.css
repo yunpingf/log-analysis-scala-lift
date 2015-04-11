@@ -1,0 +1,101 @@
+.container {
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+
+.navbar-inverse .navbar-brand {
+	color:white;
+}
+
+.navbar {
+	min-height:40px;
+	margin-bottom:0px;
+}
+
+.left-nav-bar {
+	border-top:solid 1px #dcdcdc;
+	border-right: solid 1px #dcdcdc;
+	min-height:200px;
+	padding: 0px;
+}
+.right-nav-bar {
+	border-top:solid 1px #dcdcdc;
+}
+
+.nav-item{
+	background-color:white;
+	
+	font-size:16px;
+	padding-left:5px;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+.nav:hover {
+	background-color: transparent;
+}
+
+.nav-item a{
+	color:#ACACAC;
+	text-decoration:none;
+}
+
+.nav-item-others {
+	border-top:solid 1px #dcdcdc;
+	border-bottom:solid 1px #dcdcdc;
+}
+
+#importButton{
+	color:#EEEEEE;
+}
+
+li.left-nav-choice{
+	color:white;
+}
+
+li.left-nav-choice.active{
+	color:#FFCC00;
+}
+
+li.left-nav-choice a{
+	color:#BFBFBF;
+	text-decoration:none;
+}
+
+th {
+	color: #fff;
+	background-color: #6699CC;
+}
+
+th.subtable {
+	color: #fff;
+	background-color: #FFCC00;
+}
+
+tr {
+	background-color: white;
+}
+
+a#left {
+	position: absolute;
+	top: 50%;
+	height: 240px;
+	margin-top: 120px;
+}
+
+button.close {
+	position: relative;
+	top: -12px;
+	left: 12px;
+}
+
+a.pill:active {
+	background-color: #DDDDDD
+}
+
+div#videoMoveColumn {
+	background-color: #cee6db
+}

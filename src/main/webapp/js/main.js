@@ -1,5 +1,10 @@
 $(document).ready(function() {
-
+	$("#collapseOne").click(function(){
+		$("#collapseTwo").find("li").removeClass("active");
+	});
+	$("#collapseTwo").click(function(){
+		$("#collapseOne").find("li").removeClass("active");
+	});
 });
 
 function toggleImportDataModal() {
@@ -29,6 +34,14 @@ function toggleVideoMoveModal() {
 function toggleVideoInfoModal() {
 	$("#videoInfoModal").modal('toggle');
 };
+
+function toggleVideoByHomeworkModal(){
+	$("#videoByHomeworkModal").modal('toggle');
+};
+
+function toggleHomeworkByNameModal() {
+	$("#homeworkByNameModal").modal('toggle');
+}
 
 function insertTopVideosData(tableData, columnData) {
 	var cols = [ "video_id", "count" ];
@@ -484,6 +497,128 @@ function insertVideoInfoData(columnData) {
 	$("#videoInfoColumn").find(".canvas").highcharts(chartObj);
 	$("[href='#videoInfo']").tab('show');
 };
+
+function insertVideoByHomeworkData(tableData, columnData) {
+	var cols = [ "day", "count" ];
+	var uuid = getUUID();
+	var obj = new Object();
+	obj = new Object();
+	obj.tid = uuid;
+	obj.columns = cols;
+	var tbl = new EJS({
+		url : 'ejs/table.ejs'
+	}).render(obj);
+	if ($("#videoByHomeworkTable").find("table") != null) {
+		$("#videoByHomeworkTable").remove("table");
+	}
+	$("#videoByHomeworkTable").append(tbl);
+	var myRecords = JSON.parse(tableData);
+	$("#videoByHomeworkTable").find("table").dynatable({
+		dataset : {
+			records : myRecords
+		}
+	});
+	var dynatable = $("#videoByHomeworkTable").find("table").data('dynatable');
+	dynatable.sorts.clear();
+	dynatable.sorts.add("day", 1);
+	dynatable.process();
+
+	var canvas = new EJS({
+		url : 'ejs/canvas.ejs'
+	}).render();
+
+	if ($("#videoByHomeworkColumn").find(".canvas") != null) {
+		$("#videoByHomeworkeColumn").remove(".canvas");
+	}
+	$("#videoByHomeworkColumn").append(canvas);
+	var chartData = JSON.parse(columnData);
+	var chartObj = {
+		'chart' : {
+			'type' : 'column'
+		},
+		'title' : {
+			'text' : '观看人数--距离开始时间'
+		},
+		'xAxis' : {
+			'categories' : chartData['categories'],
+		},
+		'yAxis' : {
+			'min' : 0,
+			'title' : {
+				'text' : 'Times of watching'
+			}
+		},
+		'tooltip' : {
+			'headerFormat' : '<span style="font-size:10px">{point.key}</span><table>',
+			'pointFormat' : '<tr><td style="color:{series.color};padding:0">{series.name}: </td>'
+					+ '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+			'footerFormat' : '</table>',
+			'shared' : 'true',
+			'useHTML' : 'true'
+		},
+		'plotOptions' : {
+			'column' : {
+				'pointPadding' : 0.2,
+				'borderWidth' : 0
+			}
+		},
+		'series' : chartData['series']
+	};
+	$("#videoByHomeworkColumn").find(".canvas").highcharts(chartObj);
+	$("[href='#videoByHomework']").tab('show');
+};
+
+function insertHomeworkByNameData(columnData) {
+	var canvas = new EJS({
+		url : 'ejs/canvas.ejs'
+	}).render();
+
+	if ($("#homeworkByNameColumn").find(".canvas") != null) {
+		$("#homeworkByNameColumn").remove(".canvas");
+	}
+	$("#homeworkByNameColumn").append(canvas);
+	var chartData = JSON.parse(columnData);
+	var chartObj = {
+		'chart' : {
+			'type' : 'area'
+		},
+		'title' : {
+			'text' : '完成作业/观看视频'
+		},
+		'xAxis' : {
+			'categories' : chartData['categories'],
+			'tickmarkPlacement': 'on',
+            'title': {
+                enabled: false
+            }
+		},
+		'yAxis' : {
+			'min' : 0,
+			'title' : {
+				'text' : 'Times of watching'
+			}
+		},
+		'tooltip' : {
+			'shared': true
+		},
+		'plotOptions' : {
+			'area': {
+                'stacking': 'normal',
+                'lineColor': '#666666',
+                'lineWidth': 1,
+                'marker': {
+                    'lineWidth': 1,
+                    'lineColor': '#666666'
+                }
+            }
+		},
+		'series' : chartData['series']
+	};
+	$("#homeworkByNameColumn").find(".canvas").highcharts(chartObj);
+	$("[href='#homeworkByName']").tab('show');
+};
+
+
 
 function getUUID() {
 	var d = new Date().getTime();

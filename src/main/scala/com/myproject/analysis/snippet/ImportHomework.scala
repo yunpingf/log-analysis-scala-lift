@@ -47,7 +47,7 @@ object ImportHomework extends DispatchSnippet {
       }
     }
     bind("importhomework", xhtml, "path" -> text("", assignPath, ("class" -> "form-control")),
-        "courseName" -> text("", assignCourseName, ("class" -> "form-control")),
+        "coursename" -> text("", assignCourseName, ("class" -> "form-control")),
       "submit" -> ajaxSubmit("完成", process, ("class" -> "btn btn-default"), ("id" -> "importHomeworkButton")))
   }
 

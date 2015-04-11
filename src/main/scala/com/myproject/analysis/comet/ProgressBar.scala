@@ -4,11 +4,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.concurrent.future
 import com.myproject.analysis.model.Constant
-import com.myproject.analysis.snippet.ImportData
-import com.myproject.analysis.snippet.TopVideos
-import com.myproject.analysis.snippet.VideoByStudent
-import com.myproject.analysis.snippet.VideoPause
-import com.myproject.analysis.snippet.VideoMove
+import com.myproject.analysis.snippet._
 import net.liftweb.common.Box.box2Option
 import net.liftweb.common.Full
 import net.liftweb.http.CometActor
@@ -57,6 +53,9 @@ class ProgressBar extends CometActor {
         } else if (this.name.get == "ImportData") {
           partialUpdate(ImportData.afterProgress() &
             Call("progressBarUpdate", counter, this.name.get))
+        } else if (this.name.get == "ImportHomework") {
+          partialUpdate(ImportHomework.afterProgress() &
+            Call("progressBarUpdate", counter, this.name.get))
         }
         else if (this.name.get == "VideoPause") {
           partialUpdate(VideoPause.afterProgress() &
@@ -68,6 +67,13 @@ class ProgressBar extends CometActor {
         }
         else if (this.name.get == "VideoInfo") {
           partialUpdate(VideoInfo.afterProgress() &
+            Call("progressBarUpdate", counter, this.name.get))
+        }
+        else if (this.name.get == "VideoByHomework") {
+          partialUpdate(VideoByHomework.afterProgress() &
+            Call("progressBarUpdate", counter, this.name.get))
+        }else if (this.name.get == "HomeworkByName") {
+          partialUpdate(HomeworkByName.afterProgress() &
             Call("progressBarUpdate", counter, this.name.get))
         }
 
@@ -89,19 +95,24 @@ class ProgressBar extends CometActor {
         Schedule.schedule(this, Tick, 2000L)
         val f: Future[Unit] = future {
           if (name == "TopVideos") {
-            println("Top Videos Just Started")
             TopVideos.inProgress()
           } else if (name == "VideoByStudent") {
             VideoByStudent.inProgress()
           } else if (name == "ImportData") {
             ImportData.inProgress()
+          } else if (name == "ImportHomework") {
+            ImportHomework.inProgress()
           } else if (name == "VideoPause") {
             VideoPause.inProgress()
           } else if (name == "VideoMove") {
             VideoMove.inProgress()
           } else if (name == "VideoInfo") {
-            VideoInfo.inProgress
-          }
+            VideoInfo.inProgress()
+          }else if (name == "VideoByHomework") {
+            VideoByHomework.inProgress()
+          } else if (name == "HomeworkByName") {
+            HomeworkByName.inProgress()
+          } 
         }
         f onSuccess {
           case u => { state = Constant.completed }

@@ -155,19 +155,64 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- Modal for video info ends-->
+				<!-- Modal for video by homework-->
+				<div class="modal" id="videoByHomeworkModal" tabindex="-1" role="dialog"
+					aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="videoByHomeworkModalLabel">观看人数/距离开始时间</h4>
+							</div>
+							<form data-lift="form.ajax">
+								<div id="videoByHomeworkReplace">
+									<span class="lift:embed?what=/templating/_videoByHomework_modal"></span>
+								</div>
+							</form>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- Modal for video by homework ends-->
+				<!-- Modal for homework by name-->
+				<div class="modal" id="homeworkByNameModal" tabindex="-1" role="dialog"
+					aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="homeworkByNameModalLabel">完成作业/观看视频</h4>
+							</div>
+							<form data-lift="form.ajax">
+								<div id="homeworkByNameReplace">
+									<span class="lift:embed?what=/templating/_homeworkByName_modal"></span>
+								</div>
+							</form>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- Modal for homework by name ends-->
 			</div>
 			<div class="row" style="display:none">
 				<div class="progress">
 					<lift:comet type="ProgressBar" name="ImportData">
 						<pgb:bar></pgb:bar>
 					</lift:comet>
+					<lift:comet type="ProgressBar" name="ImportHomework">
+						<pgb:bar></pgb:bar>
+					</lift:comet>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-xs-2 left-nav-bar">
-					<div class="nav-item">
+			<div class="row" style="margin-top:10px">
+				<div class="col-xs-2 left-nav-bar" style="padding-top:0px">
+					<div class="nav-item nav-item-others">
 						<a data-toggle="collapse" data-parent="#accordion"
-							href="#collapseOne"><span class="glyphicon glyphicon-film"></span>视频数据</a>
+							href="#collapseOne"><span class="glyphicon glyphicon-film"></span>视频统计</a>
 					</div>
 					<div id="collapseOne" class="panel-collapse collapse in">
 						<ul class="nav nav-pills" role="tablist">
@@ -186,11 +231,18 @@
 					<div class="nav-item nav-item-others">
 						<a data-toggle="collapse" data-parent="#accordion"
 							href="#collapseTwo"><span
-							class="glyphicon glyphicon-th-large"></span>其他</a>
+							class="glyphicon glyphicon-th-large"></span>数据关联</a>
 					</div>
-					<div id="collapseTwo" class="panel-collapse collapse"></div>
+					<div id="collapseTwo" class="panel-collapse collapse in">
+						<ul class="nav nav-pills" role="tablist">
+							<li class="left-nav-choice"><a href="#videoByHomework"
+								data-toggle="pill">观看人数/距离开始时间</a></li>
+							<li class="left-nav-choice"><a href="#homeworkByName"
+								data-toggle="pill">完成作业/观看视频</a></li>
+						</ul>
+					</div>
 				</div>
-				<div class="col-xs-10 right-nav-bar">
+				<div class="col-xs-10 right-nav-bar" style="padding-top:10px">
 					<div class="tab-content">
 						<div class="tab-pane active" id="topVideos">
 							<div class="row">
@@ -328,6 +380,60 @@
 							<div class="tab-content">
 								<div class="tab-pane" id="videoInfoTable"></div>
 								<div class="tab-pane active" id="videoInfoColumn"></div>
+							</div>
+						</div>
+						<div class="tab-pane" id="videoByHomework">
+							<div class="row">
+								<div class="col-xs-1">
+									<a style="text-decoration: none" href="#"
+										onclick="toggleVideoByHomeworkModal()"><span
+										class="glyphicon glyphicon-refresh"></span>刷新</a>
+								</div>
+								<div class="col-xs-11">
+									<div class="progress">
+										<lift:comet type="ProgressBar" name="VideoByHomework">
+											<pgb:bar></pgb:bar>
+										</lift:comet>
+									</div>
+								</div>
+							</div>
+							<ul class="nav nav-tabs" role="tablist">
+								<li ><a href="#videoByHomeworkTable"
+									role="tab" data-toggle="tab">表格</a></li>
+								<li class="active"><a href="#videoByHomeworkColumn" role="tab"
+									data-toggle="tab">图表</a></li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div class="tab-pane active" id="videoByHomeworkTable"></div>
+								<div class="tab-pane" id="videoByHomeworkColumn"></div>
+							</div>
+						</div>
+						<div class="tab-pane" id="homeworkByName">
+							<div class="row">
+								<div class="col-xs-1">
+									<a style="text-decoration: none" href="#"
+										onclick="toggleHomeworkByNameModal()"><span
+										class="glyphicon glyphicon-refresh"></span>刷新</a>
+								</div>
+								<div class="col-xs-11">
+									<div class="progress">
+										<lift:comet type="ProgressBar" name="HomeworkByName">
+											<pgb:bar></pgb:bar>
+										</lift:comet>
+									</div>
+								</div>
+							</div>
+							<ul class="nav nav-tabs" role="tablist">
+								<li class="active"><a href="#homeworkByNameTable"
+									role="tab" data-toggle="tab">表格</a></li>
+								<li><a href="#homeworkByNameColumn" role="tab"
+									data-toggle="tab">图表</a></li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div class="tab-pane" id="homeworkByNameTable"></div>
+								<div class="tab-pane active" id="homeworkByNameColumn"></div>
 							</div>
 						</div>
 					</div>

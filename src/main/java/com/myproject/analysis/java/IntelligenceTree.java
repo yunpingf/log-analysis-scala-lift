@@ -856,7 +856,7 @@ public class IntelligenceTree extends HiveJdbcDriver {
 		}
 		else
 			return result;
-		sql="select count(*),cast(datediff('"+deadline+"',from_unixtime(cast(time/1000 as int),'yyyy-MM-dd'))/"+inter+" as int) from videoInfo where video_id='"+videoId+"' and datediff('"+deadline+
+		sql="select count(*),cast(datediff('"+deadline+"',from_unixtime(cast(time/1000 as int),'yyyy-MM-dd'))/"+inter+" as int) t from videoInfo where video_id='"+videoId+"' and datediff('"+deadline+
 				"',from_unixtime(cast(time/1000 as int),'yyyy-mm-dd'))<=0 group by cast( datediff('"+deadline+
 				"',from_unixtime(cast(time/1000 as int),'yyyy-MM-dd'))/"+inter+" as int) sort by t desc";
 		cacheI=0;
@@ -1004,8 +1004,8 @@ public class IntelligenceTree extends HiveJdbcDriver {
 			
 			Long time_start=System.currentTimeMillis();
 //			JSONObject result1=testhost.getVideoInfo(76830);
-			JSONObject result1=testhost.getHomeworkByName("sixiuke");
-//			JSONObject result1=testhost.getVideoByHomework("3900", 10, "sixiuke");
+//			JSONObject result1=testhost.getHomeworkByName("sixiuke");
+			JSONObject result1=testhost.getVideoByHomework("2041", 10, "sixiuke");
 			Long time_end=System.currentTimeMillis();
 			System.out.println(time_end-time_start);
 ////			JSONObject result2=testhost.getVideoPause(88257,300);
@@ -1017,7 +1017,7 @@ public class IntelligenceTree extends HiveJdbcDriver {
 //			time_end=System.currentTimeMillis();
 //			System.out.println(time_end-time_start);
 			System.out.println(result1);
-			
+//			
 			/*testhost.importVideoData(
 					"/Users/fengyunping/Documents/workspace/intelligencetree/log",
 					"videoInfo", "videoAction");*/

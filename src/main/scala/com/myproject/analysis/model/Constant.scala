@@ -31,5 +31,5 @@ object Constant {
   val notStarted = "notStarted"
   val justBegin = "justBegin"
     
-  val inter = 100
+  val inter = 10
 }

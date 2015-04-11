@@ -103,7 +103,9 @@ class Boot {
         "video_by_student" -> VideoByStudent,
         "video_pause" -> VideoPause,
         "video_move" -> VideoMove,
-        "video_info" -> VideoInfo))
+        "video_info" -> VideoInfo,
+        "video_by_homework" -> VideoByHomework,
+        "homework_by_name" -> HomeworkByName))
 
     LiftRules.ajaxPostTimeout = 50000 //m
 
